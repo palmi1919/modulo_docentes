@@ -153,6 +153,7 @@ body {
 .filter-group {
     display: flex;
     flex-direction: column;
+    margin: 30px;
 }
 
 .filter-group label {
@@ -185,6 +186,7 @@ body {
     cursor: pointer;
     transition: var(--transition);
     height: fit-content;
+    margin: 35px;
 }
 
 .clear-btn:hover {
