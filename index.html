@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Docentes de Maestrías - Universidad</title>
+    <title>Docentes de Posgrado - Universidad</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -17,7 +17,6 @@
 
     <main class="main">
         <div class="container">
-            <!-- Estadísticas -->
             <section class="stats-section">
                 <div class="stats-grid">
                     <div class="stat-card">
@@ -33,52 +32,54 @@
                         <div class="stat-label">Con Revistas</div>
                     </div>
                     <div class="stat-card">
+                        <div class="stat-number" id="con-doctorado">0</div>
+                        <div class="stat-label">Con Doctorado</div>
+                    </div>
+                    <div class="stat-card">
                         <div class="stat-number" id="solo-maestria">0</div>
                         <div class="stat-label">Solo Maestría</div>
                     </div>
                 </div>
             </section>
 
-                <div class="filters-container">
-                    <div class="filter-group">
-                        <label>Publicaciones:</label>
-                        <select id="filter-publicaciones">
-                            <option value="">Todas</option>
-                            <option value="libros">Solo con Libros</option>
-                            <option value="revistas">Solo con Revistas</option>
-                            <option value="ambos">Libros y Revistas</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label>Nivel de Enseñanza:</label>
-                        <select id="filter-nivel">
-                            <option value="">Todos</option>
-                            <option value="solo-maestria">Solo Maestría</option>
-                            <option value="maestria-licenciatura">Maestría y Licenciatura</option>
-                            <option value="maestria-ingenieria">Maestría e Ingeniería</option>
-                            <option value="todos-niveles">Todos los Niveles</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label>Especialidad:</label>
-                        <select id="filter-especialidad">
-                            <option value="">Todas</option>
-                        </select>
-                    </div>
-
-                    <button id="clear-filters" class="clear-btn">
-                        <i class="fas fa-times"></i> Limpiar Filtros
-                    </button>
+            <section class="filters-container">
+                <div class="filter-group">
+                    <label for="filter-publicaciones">Publicaciones:</label>
+                    <select id="filter-publicaciones">
+                        <option value="">Todas</option>
+                        <option value="libros">Solo con Libros</option>
+                        <option value="revistas">Solo con Revistas</option>
+                        <option value="ambos">Libros y Revistas</option>
+                    </select>
                 </div>
+
+                <div class="filter-group">
+                    <label for="filter-nivel">Nivel de Enseñanza:</label>
+                    <select id="filter-nivel">
+                        <option value="">Todos</option>
+                        <option value="doctorado">Con Doctorado</option>
+                        <option value="solo-maestria">Solo Maestría</option>
+                        <option value="maestria-licenciatura">Maestría y Licenciatura</option>
+                        <option value="maestria-ingenieria">Maestría e Ingeniería</option>
+                        <option value="todos-niveles">Todos los Niveles</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filter-especialidad">Especialidad:</label>
+                    <select id="filter-especialidad">
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+
+                <button id="clear-filters" class="clear-btn">
+                    <i class="fas fa-times"></i> Limpiar Filtros
+                </button>
             </section>
 
-            <!-- Grid de Docentes -->
             <section class="docentes-section">
                 <div id="docentes-grid" class="docentes-grid">
-                    <!-- Los docentes se cargarán aquí dinámicamente -->
-                </div>
+                    </div>
                 <div id="no-results" class="no-results" style="display: none;">
                     <i class="fas fa-search"></i>
                     <h3>No se encontraron docentes</h3>
@@ -87,6 +88,16 @@
             </section>
         </div>
     </main>
+
+    <section id="docente-detalle" class="docente-detalle-section" style="display: none;">
+        <div class="container">
+            <button id="close-detail" class="clear-btn close-btn">
+                <i class="fas fa-arrow-left"></i> Volver al Listado
+            </button>
+            <div id="detalle-content">
+                </div>
+        </div>
+    </section>
 
     <script src="data.js"></script>
     <script src="script.js"></script>

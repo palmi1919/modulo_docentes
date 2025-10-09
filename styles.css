@@ -67,6 +67,7 @@ body {
 }
 
 .stats-grid {
+    /* 5 elementos en desktop, se ajusta automáticamente */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
@@ -102,7 +103,11 @@ body {
 }
 
 /* Filtros */
-.filters-section {
+.filters-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    align-items: end;
     background: var(--card-background);
     padding: 1.5rem;
     border-radius: var(--border-radius);
@@ -110,50 +115,9 @@ body {
     margin-bottom: 2rem;
 }
 
-.search-container {
-    margin-bottom: 1.5rem;
-}
-
-.search-box {
-    position: relative;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.search-box i {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-secondary);
-}
-
-.search-box input {
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
-    border: 2px solid var(--border-color);
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    transition: var(--transition);
-}
-
-.search-box input:focus {
-    outline: none;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(0, 141, 129, 0.1);
-}
-
-.filters-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    align-items: end;
-}
-
 .filter-group {
     display: flex;
     flex-direction: column;
-    margin: 30px;
 }
 
 .filter-group label {
@@ -185,8 +149,8 @@ body {
     font-size: 1rem;
     cursor: pointer;
     transition: var(--transition);
-    height: fit-content;
-    margin: 35px;
+    height: 44px;
+    margin: 0;
 }
 
 .clear-btn:hover {
@@ -202,18 +166,26 @@ body {
 }
 
 .docente-card {
+    display: block; 
     background: var(--card-background);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     overflow: hidden;
     transition: var(--transition);
     border: 1px solid var(--border-color);
+    text-decoration: none; 
+    color: inherit; 
 }
 
 .docente-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
 }
+.docente-card:focus { 
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
 
 .docente-header {
     padding: 1.5rem;
@@ -359,14 +331,117 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* --- DETALLE DEL DOCENTE (ESTILOS REFINADOS) --- */
+.docente-detalle-section {
+    padding: 2rem 0;
+    min-height: 80vh;
+}
+
+/* Estilo para el botón de volver */
+.close-btn {
+    margin: 1rem 0 2rem 0 !important;
+    background: var(--primary-color);
+    width: auto;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.close-btn:hover {
+    background: var(--text-primary);
+}
+
+/* Contenedor principal de la información del docente */
+#detalle-content {
+    background: var(--card-background);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+}
+
+.detalle-header-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.detalle-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--secondary-color);
+    transition: transform 0.3s ease;
+}
+.detalle-avatar:hover {
+    transform: scale(1.02);
+}
+
+.detalle-info-principal h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+.detalle-profesion {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+
+.detalle-cuerpo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding-top: 1rem;
+}
+
+.detalle-seccion {
+    padding: 1.5rem;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    border-left: 5px solid var(--accent-color);
+}
+
+.detalle-seccion h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.publicaciones-detalle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.publicaciones-detalle-grid .publicacion-item {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+}
+
+
 /* Responsive */
+@media (max-width: 992px) {
+    .detalle-cuerpo {
+        grid-template-columns: 1fr;
+    }
+}
 @media (max-width: 768px) {
     .header h1 {
         font-size: 2rem;
-    }
-    
-    .header p {
-        font-size: 1rem;
     }
     
     .stats-grid {
@@ -377,31 +452,25 @@ body {
         grid-template-columns: 1fr;
     }
     
-    .docentes-grid {
-        grid-template-columns: 1fr;
-    }
-    
     .docente-header {
         flex-direction: column;
         text-align: center;
     }
     
-    .docente-publicaciones {
-        grid-template-columns: 1fr;
+    /* Responsive Detalle */
+    .detalle-header-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+    .detalle-info-principal h2 {
+        font-size: 2rem;
     }
 }
-
 @media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
-    }
-    
     .stats-grid {
         grid-template-columns: 1fr;
     }
-    
-    .docente-avatar {
-        width: 60px;
-        height: 60px;
+    .publicaciones-detalle-grid {
+        grid-template-columns: 1fr;
     }
 }

@@ -16,10 +16,16 @@ const clearFiltersBtn = document.getElementById('clear-filters');
 const docentesGrid = document.getElementById('docentes-grid');
 const noResults = document.getElementById('no-results');
 
+// Elementos de detalle y navegación
+const docenteDetalleSection = document.getElementById('docente-detalle');
+const closeDetailBtn = document.getElementById('close-detail');
+
 // Elementos de estadísticas
 const totalDocentesEl = document.getElementById('total-docentes');
 const conLibrosEl = document.getElementById('con-libros');
 const conRevistasEl = document.getElementById('con-revistas');
+// NUEVO ELEMENTO DE ESTADÍSTICAS
+const conDoctoradoEl = document.getElementById('con-doctorado'); 
 const soloMaestriaEl = document.getElementById('solo-maestria');
 
 // Inicialización
@@ -29,11 +35,16 @@ document.addEventListener('DOMContentLoaded', function() {
     actualizarEstadisticas();
     
     // Event listeners
-    searchInput.addEventListener('input', manejarBusqueda);
+    // Conecta aquí el searchInput si lo tienes en el HTML (no estaba en tu última versión)
+    // searchInput.addEventListener('input', manejarBusqueda);
     filterPublicaciones.addEventListener('change', aplicarFiltros);
     filterNivel.addEventListener('change', aplicarFiltros);
     filterEspecialidad.addEventListener('change', aplicarFiltros);
     clearFiltersBtn.addEventListener('click', limpiarFiltros);
+    
+    // Event listeners para la funcionalidad de detalle
+    docentesGrid.addEventListener('click', manejarDetalle);
+    closeDetailBtn.addEventListener('click', cerrarDetalle);
 });
 
 // Inicializar opciones de filtros
@@ -49,28 +60,29 @@ function inicializarFiltros() {
     });
 }
 
-// Manejar búsqueda por texto
+// Manejar búsqueda por texto (si se añade el input de búsqueda)
 function manejarBusqueda(e) {
     filtroActual.busqueda = e.target.value.toLowerCase();
     aplicarFiltros();
 }
 
-// Aplicar todos los filtros
+// Aplicar todos los filtros (Lógica de Doctorado añadida)
 function aplicarFiltros() {
     // Actualizar filtros actuales
+    // Si searchInput está en el HTML, descomentar: filtroActual.busqueda = searchInput.value.toLowerCase();
     filtroActual.publicaciones = filterPublicaciones.value;
     filtroActual.nivel = filterNivel.value;
     filtroActual.especialidad = filterEspecialidad.value;
     
     // Filtrar docentes
     docentesFiltrados = docentesData.filter(docente => {
-        // Filtro de búsqueda por texto
+        // Filtro de búsqueda por texto (si se implementa)
         const cumpleBusqueda = !filtroActual.busqueda || 
             docente.nombre.toLowerCase().includes(filtroActual.busqueda) ||
             docente.especialidad.toLowerCase().includes(filtroActual.busqueda) ||
             docente.profesion.toLowerCase().includes(filtroActual.busqueda);
         
-        // Filtro de publicaciones
+        // Filtro de publicaciones (sin cambios)
         let cumplePublicaciones = true;
         if (filtroActual.publicaciones) {
             switch (filtroActual.publicaciones) {
@@ -86,10 +98,18 @@ function aplicarFiltros() {
             }
         }
         
-        // Filtro de nivel de enseñanza
+        // Filtro de nivel de enseñanza (Lógica ajustada para Doctorado)
         let cumpleNivel = true;
         if (filtroActual.nivel) {
+            // Función auxiliar para verificar si el docente tiene Doctorado en sus estudios
+            const tieneDoctorado = docente.estudios.some(estudio => 
+                estudio.toLowerCase().includes('phd') || estudio.toLowerCase().includes('doctorado')
+            );
+
             switch (filtroActual.nivel) {
+                case 'doctorado':
+                    cumpleNivel = tieneDoctorado;
+                    break;
                 case 'solo-maestria':
                     cumpleNivel = docente.nivelesEnsenanza.length === 1 && docente.nivelesEnsenanza.includes('Maestría');
                     break;
@@ -100,12 +120,12 @@ function aplicarFiltros() {
                     cumpleNivel = docente.nivelesEnsenanza.includes('Maestría') && docente.nivelesEnsenanza.includes('Ingeniería') && !docente.nivelesEnsenanza.includes('Licenciatura');
                     break;
                 case 'todos-niveles':
-                    cumpleNivel = docente.nivelesEnsenanza.length === 3;
+                    cumpleNivel = docente.nivelesEnsenanza.length >= 3; 
                     break;
             }
         }
         
-        // Filtro de especialidad
+        // Filtro de especialidad (sin cambios)
         const cumpleEspecialidad = !filtroActual.especialidad || docente.especialidad === filtroActual.especialidad;
         
         return cumpleBusqueda && cumplePublicaciones && cumpleNivel && cumpleEspecialidad;
@@ -115,7 +135,7 @@ function aplicarFiltros() {
     actualizarEstadisticas();
 }
 
-// Mostrar docentes en el grid
+// Mostrar docentes en el grid (sin cambios importantes en la estructura de la tarjeta)
 function mostrarDocentes() {
     if (docentesFiltrados.length === 0) {
         docentesGrid.style.display = 'none';
@@ -127,9 +147,12 @@ function mostrarDocentes() {
     noResults.style.display = 'none';
     
     docentesGrid.innerHTML = docentesFiltrados.map(docente => `
-        <div class="docente-card">
+        <a href="#docente-${docente.id}" 
+           class="docente-card" 
+           aria-label="Ver perfil completo de ${docente.nombre}"
+           data-docente-id="${docente.id}"> 
             <div class="docente-header">
-                <img src="${docente.imagen}" alt="${docente.nombre}" class="docente-avatar">
+                <img src="${docente.imagen}" alt="Fotografía de ${docente.nombre}" class="docente-avatar" loading="lazy">
                 <div class="docente-info">
                     <h3>${docente.nombre}</h3>
                     <div class="docente-profesion">${docente.profesion}</div>
@@ -164,15 +187,101 @@ function mostrarDocentes() {
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     `).join('');
 }
 
-// Actualizar estadísticas
+// Manejar clic en tarjeta y mostrar detalle (sin cambios)
+function manejarDetalle(e) {
+    const card = e.target.closest('.docente-card');
+    if (card) {
+        e.preventDefault(); 
+        
+        const docenteId = parseInt(card.dataset.docenteId);
+        const docente = docentesData.find(d => d.id === docenteId);
+        
+        if (docente) {
+            renderizarDetalle(docente);
+            document.querySelector('.main').style.display = 'none';
+            docenteDetalleSection.style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    }
+}
+
+// Generar y mostrar el HTML detallado (sin cambios)
+function renderizarDetalle(docente) {
+    const detalleContent = document.getElementById('detalle-content');
+    
+    const publicacionesHTML = `
+        <div class="publicaciones-detalle-grid">
+            <div class="publicacion-item">
+                <i class="fas fa-book"></i>
+                <div class="publicacion-count">${docente.publicaciones.libros}</div>
+                <div class="publicacion-label">Libros Publicados</div>
+            </div>
+            <div class="publicacion-item">
+                <i class="fas fa-newspaper"></i>
+                <div class="publicacion-count">${docente.publicaciones.revistas}</div>
+                <div class="publicacion-label">Artículos en Revistas</div>
+            </div>
+        </div>
+    `;
+
+    detalleContent.innerHTML = `
+        <div class="detalle-header-wrapper">
+            <img src="${docente.imagen}" alt="Fotografía de ${docente.nombre}" class="detalle-avatar">
+            <div class="detalle-info-principal">
+                <h2>${docente.nombre}</h2>
+                <p class="detalle-profesion">${docente.profesion}</p>
+                <span class="docente-especialidad">${docente.especialidad}</span>
+            </div>
+        </div>
+
+        <div class="detalle-cuerpo">
+            <section class="detalle-seccion">
+                <h3><i class="fas fa-graduation-cap"></i> Formación Académica</h3>
+                <ul class="estudios-list">
+                    ${docente.estudios.map(estudio => `<li>${estudio}</li>`).join('')}
+                </ul>
+            </section>
+
+            <section class="detalle-seccion">
+                <h3><i class="fas fa-chalkboard-teacher"></i> Niveles de Enseñanza</h3>
+                <div class="niveles-tags">
+                    ${docente.nivelesEnsenanza.map(nivel => `<span class="nivel-tag">${nivel}</span>`).join('')}
+                </div>
+            </section>
+            
+            <section class="detalle-seccion">
+                <h3><i class="fas fa-feather-alt"></i> Publicaciones y Research</h3>
+                ${publicacionesHTML}
+            </section>
+        </div>
+    `;
+}
+
+// Ocultar detalle y volver al listado (sin cambios)
+function cerrarDetalle() {
+    document.querySelector('.main').style.display = 'block';
+    docenteDetalleSection.style.display = 'none';
+    window.location.hash = ''; 
+    window.scrollTo(0, 0); 
+}
+
+// Actualizar estadísticas (Cálculo de Doctorado añadido)
 function actualizarEstadisticas() {
     const total = docentesFiltrados.length;
     const conLibros = docentesFiltrados.filter(d => d.publicaciones.libros > 0).length;
     const conRevistas = docentesFiltrados.filter(d => d.publicaciones.revistas > 0).length;
+    
+    // CÁLCULO DE DOCTORADO: Busca 'PhD' o 'Doctorado' en el array de estudios
+    const conDoctorado = docentesFiltrados.filter(d => 
+        d.estudios.some(estudio => 
+            estudio.toLowerCase().includes('phd') || estudio.toLowerCase().includes('doctorado')
+        )
+    ).length;
+
     const soloMaestria = docentesFiltrados.filter(d => 
         d.nivelesEnsenanza.length === 1 && d.nivelesEnsenanza.includes('Maestría')
     ).length;
@@ -181,10 +290,11 @@ function actualizarEstadisticas() {
     animarContador(totalDocentesEl, total);
     animarContador(conLibrosEl, conLibros);
     animarContador(conRevistasEl, conRevistas);
+    animarContador(conDoctoradoEl, conDoctorado); 
     animarContador(soloMaestriaEl, soloMaestria);
 }
 
-// Animar contadores
+// Animar contadores (sin cambios)
 function animarContador(elemento, valorFinal) {
     const valorInicial = parseInt(elemento.textContent) || 0;
     const duracion = 500;
@@ -201,9 +311,8 @@ function animarContador(elemento, valorFinal) {
     }, 16);
 }
 
-// Limpiar todos los filtros
+// Limpiar todos los filtros (sin cambios)
 function limpiarFiltros() {
-    searchInput.value = '';
     filterPublicaciones.value = '';
     filterNivel.value = '';
     filterEspecialidad.value = '';
