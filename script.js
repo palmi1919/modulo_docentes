@@ -1,12 +1,12 @@
 // script.js
 
 // Variables globales
-let docentesFiltrados = [...docentesData]; // Siempre serán todos
+let docentesFiltrados = [...docentesData]; 
 let filtroActual = {
-    busqueda: '' // Solo dejamos la búsqueda por si la implementas después
+    busqueda: '' 
 };
 
-// Elementos del DOM (SOLO los necesarios)
+// Elementos del DOM 
 const docentesGrid = document.getElementById('docentes-grid');
 const noResults = document.getElementById('no-results');
 
@@ -23,7 +23,6 @@ const soloMaestriaEl = document.getElementById('solo-maestria');
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
-    // Ya no es necesario inicializarFiltros ni aplicarFiltros
     mostrarDocentes();
     actualizarEstadisticas();
     
@@ -32,11 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
     closeDetailBtn.addEventListener('click', cerrarDetalle);
 });
 
-// NOTA: La función aplicarFiltros, inicializarFiltros y limpiarFiltros ha sido eliminada.
-
 // Mostrar docentes en el grid
 function mostrarDocentes() {
-    // Como no hay filtros, siempre mostramos docentesData
     docentesFiltrados = docentesData; 
     
     if (docentesFiltrados.length === 0) {
@@ -50,12 +46,10 @@ function mostrarDocentes() {
     
     docentesGrid.innerHTML = docentesFiltrados.map(docente => `
         <a href="#docente-${docente.id}" 
-           class="docente-card ${docente.esRector ? 'docente-card-rector' : ''}" 
+           class="docente-card" 
            aria-label="Ver perfil completo de ${docente.nombre}"
            data-docente-id="${docente.id}"> 
             
-            ${docente.esRector ? '<div class="rector-badge"><i class="fas fa-crown"></i> Rector</div>' : ''}
-
             <div class="docente-header">
                 <img src="${docente.imagen}" alt="Fotografía de ${docente.nombre}" class="docente-avatar" loading="lazy">
                 <div class="docente-info">
@@ -114,7 +108,7 @@ function manejarDetalle(e) {
     }
 }
 
-// Generar y mostrar el HTML detallado (SIN SNII/SSIT)
+// Generar y mostrar el HTML detallado (AÑADIENDO DATOS ADICIONALES)
 function renderizarDetalle(docente) {
     const detalleContent = document.getElementById('detalle-content');
     
@@ -129,10 +123,16 @@ function renderizarDetalle(docente) {
             `).join('')}
         </ul>` : '<p>Sin publicaciones relevantes listadas.</p>';
 
-    // Elemento Rector llamativo en la vista de detalle
-    const rectorBadgeDetalle = docente.esRector ? 
-        `<span class="detalle-rector-tag"><i class="fas fa-crown"></i> ${docente.profesion.split('/')[0].trim()}</span>` : 
-        `<p class="detalle-profesion">${docente.profesion}</p>`;
+    const profesionPrincipalHTML = `<p class="detalle-profesion">${docente.profesion}</p>`;
+
+    // NUEVA SECCIÓN: Datos Adicionales (Trayectoria, Logros, etc.)
+    const datosAdicionalesHTML = docente.datosAdicionales ? 
+        `<section class="detalle-seccion detalle-seccion-full-width">
+            <h3><i class="fas fa-trophy"></i> ${docente.datosAdicionales.titulo}</h3>
+            <ul class="datos-adicionales-list">
+                ${docente.datosAdicionales.items.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+        </section>` : '';
 
 
     detalleContent.innerHTML = `
@@ -140,7 +140,7 @@ function renderizarDetalle(docente) {
             <img src="${docente.imagen}" alt="Fotografía de ${docente.nombre}" class="detalle-avatar">
             <div class="detalle-info-principal">
                 <h2>${docente.nombre}</h2>
-                ${rectorBadgeDetalle}
+                ${profesionPrincipalHTML}
                 <span class="docente-especialidad">${docente.especialidad}</span>
             </div>
         </div>
@@ -170,6 +170,8 @@ function renderizarDetalle(docente) {
             </div>
         </div>
         
+        ${datosAdicionalesHTML}
+
         <section class="detalle-seccion detalle-seccion-full-width">
             <h3><i class="fas fa-book-reader"></i> Publicaciones Más Relevantes</h3>
             ${publicacionesRelevantesHTML}
@@ -185,23 +187,28 @@ function cerrarDetalle() {
     window.scrollTo(0, 0); 
 }
 
-// Actualizar estadísticas (Cálculo de Doctorado incluido)
+// Actualizar estadísticas 
 function actualizarEstadisticas() {
     const total = docentesData.length;
     const conLibros = docentesData.filter(d => d.publicaciones.libros > 0).length;
     const conRevistas = docentesData.filter(d => d.publicaciones.revistas > 0).length;
     
-    // CÁLCULO DE DOCTORADO
+    // Función auxiliar: Cuenta si el docente TIENE Doctorado/PhD/Posdoc en su FORMACIÓN (estudios)
     const tieneDoctorado = (d) => d.estudios.some(estudio => 
-        estudio.toLowerCase().includes('phd') || estudio.toLowerCase().includes('doctorado')
+        estudio.toLowerCase().includes('phd') || 
+        estudio.toLowerCase().includes('doctorado') ||
+        estudio.toLowerCase().includes('posdoctorado') 
     );
     const conDoctorado = docentesData.filter(tieneDoctorado).length;
 
-    // CÁLCULO DE SOLO MAESTRÍA (tienen Maestría/Master y NO tienen Doctorado/PhD)
+    // Función auxiliar: Cuenta si el docente TIENE Maestría/Master en su FORMACIÓN (estudios)
     const tieneMaestria = (d) => d.estudios.some(estudio => 
-        estudio.toLowerCase().includes('maestría') || estudio.toLowerCase().includes('master')
+        estudio.toLowerCase().includes('maestría') || 
+        estudio.toLowerCase().includes('master') || 
+        estudio.toLowerCase().includes('ciencias aplicadas') 
     );
 
+    // CÁLCULO DE SOLO MAESTRÍA (tienen Maestría/Master en su formación y NO tienen Doctorado/PhD/Posdoc)
     const soloMaestria = docentesData.filter(d => 
         tieneMaestria(d) && !tieneDoctorado(d)
     ).length;

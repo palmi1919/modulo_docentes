@@ -101,11 +101,6 @@ body {
     font-weight: 500;
 }
 
-/* --- SECCIÓN DE FILTROS ELIMINADA ---
-    Los estilos .filters-container, .filter-group, select, y .clear-btn
-    han sido removidos para coincidir con la eliminación de filtros en index.html.
-*/
-
 /* Grid de Docentes */
 .docentes-grid {
     display: grid;
@@ -285,8 +280,8 @@ body {
 }
 
 .clear-btn {
-    /* Estilos del clear-btn reutilizados para el botón 'Volver' */
-    background: var(--secondary-color); /* Lo mantengo para que use el color de Volver */
+    /* Estilos reutilizados para el botón 'Volver' */
+    background: var(--secondary-color);
     color: white;
     border: none;
     padding: 0.75rem 1rem;
@@ -421,49 +416,30 @@ body {
     font-size: 0.9rem;
 }
 
-/* --- ESTILOS PARA EL RECTOR LLAMATIVO --- */
+/* Estilo para la lista de Datos Adicionales */
+.datos-adicionales-list {
+    list-style: none; 
+    padding: 0;
+}
 
-/* Estilo para la tarjeta del Rector en el grid */
-.docente-card-rector {
-    border: 3px solid var(--accent-color);
-    box-shadow: 0 0 15px rgba(0, 166, 147, 0.4); /* Sombra luminosa */
+.datos-adicionales-list li {
     position: relative;
-    padding-top: 25px; /* Deja espacio para el badge */
+    padding-left: 1.5rem; 
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
-/* Etiqueta flotante de "Rector" en la tarjeta del grid */
-.rector-badge {
+.datos-adicionales-list li::before {
+    content: "\f058"; /* Fa-check-circle del Font Awesome */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--secondary-color);
     position: absolute;
-    top: 0;
     left: 0;
-    background: var(--accent-color);
-    color: white;
-    padding: 0.2rem 1rem;
-    border-radius: var(--border-radius) 0 10px 0;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    z-index: 10;
-}
-.rector-badge i {
-    margin-right: 5px;
-}
-
-/* Etiqueta llamativa en la vista de detalle */
-.detalle-rector-tag {
-    display: inline-block;
-    background: linear-gradient(90deg, var(--secondary-color) 0%, var(--accent-color) 100%);
-    color: white;
-    padding: 0.5rem 1.5rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    font-size: 1.3rem;
-    font-weight: 700;
-    box-shadow: var(--shadow);
-}
-.detalle-rector-tag i {
-    margin-right: 0.75rem;
-    font-size: 1.5rem;
+    top: 0;
+    font-size: 1.1rem;
 }
 
 /* Responsive */
@@ -476,8 +452,6 @@ body {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    /* Eliminado: .filters-container grid-template-columns: 1fr; */
-
     .detalle-header-wrapper {
         flex-direction: column;
         text-align: center;

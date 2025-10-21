@@ -15,7 +15,8 @@ const docentesData = [
             "Licenciatura: Antropología Social - Escuela Nacional de Antropología e Historia (ENAH)"
         ],
         
-        nivelesEnsenanza: ["Doctorado", "Maestría", "Licenciatura", "Etnografía"],
+        // CORRECCIÓN: Solo se dejan Maestría y Licenciatura/Etnografía
+        nivelesEnsenanza: ["Maestría", "Licenciatura"], 
         
         publicaciones: {
             libros: 2, 
@@ -34,7 +35,9 @@ const docentesData = [
             { anio: 2023, titulo: "Alerta de seguridad, turismo y sociedad del riesgo en Mazatlán, Sinaloa, 2017-2021", fuente: "Violencia, Criminalidad y Delito en Sinaloa.", tipo: "Capítulo de Libro" },
             { anio: 2023, titulo: "Especialización delictiva municipal en Sinaloa. Análisis de incidencia delictiva, 2017 y 2021.", fuente: "Ciencia y Universidad, Revista de la Facultad de Ciencias Económicas y Sociales", tipo: "Artículo" },
             { anio: 2023, titulo: "Los Judíos contra las cruces. Un sistema segmentario de grupos rituales entre los mayos de Tehueco", fuente: "Arqueología Mexicana, Núm. 181", tipo: "Artículo" },
-        ]
+        ],
+        
+        esRector: false
     },
     
     // OBJETO 2: Dr. Juan Manuel Mendoza Guerrero (Rector)
@@ -51,7 +54,8 @@ const docentesData = [
             "Licenciatura: Economía"
         ],
         
-        nivelesEnsenanza: ["Doctorado", "Maestría", "Licenciatura"], 
+        // CORRECCIÓN: Solo se deja Maestría
+        nivelesEnsenanza: ["Maestría"], 
         
         publicaciones: {
             libros: 0, 
@@ -68,7 +72,7 @@ const docentesData = [
             { anio: "Info", titulo: "No se listan publicaciones recientes en este perfil.", fuente: "Consultar CV completo para historial.", tipo: "Sin publicaciones destacadas" }
         ],
         
-        esRector: true
+        esRector: false 
     },
     
     // OBJETO 3: Dr. Omar Jiménez Pérez
@@ -85,11 +89,12 @@ const docentesData = [
             "Licenciatura: Ingeniería Agronómica con Acentuación en Protección Vegetal (Universidad Autónoma de Sinaloa)"
         ],
         
-        nivelesEnsenanza: ["Licenciatura", "Maestría", "Doctorado"],
+        // CORRECCIÓN: Solo se dejan Licenciatura y Maestría
+        nivelesEnsenanza: ["Licenciatura", "Maestría"],
         
         publicaciones: { 
             libros: 0, 
-            revistas: 6, // 5 artículos + 1 review
+            revistas: 6, 
             total: 6 
         },
         
@@ -107,5 +112,108 @@ const docentesData = [
         ],
         
         esRector: false
+    },
+
+    // OBJETO 4: Dra. Marcela Rebeca Contreras Loera
+    {
+        id: 4,
+        nombre: "Dra. Marcela Rebeca Contreras Loera",
+        profesion: "Administradora / Investigadora",
+        especialidad: "Estudios Organizacionales y Turismo",
+        imagen: "img/Dra-Marcela-Rebeca-Contreras.png", 
+        esRector: false,
+        
+        estudios: [
+            "Posdoctorado: Ciencias Sociales – Padrón de Excelencia Conahcyt",
+            "Doctorado: Estudios Organizacionales – Padrón de Excelencia Conahcyt",
+            "Maestría: Administración de Negocios",
+            "Licenciatura: Administración y Finanzas"
+        ],
+        
+        // CORRECCIÓN: Solo se dejan Licenciatura y Maestría
+        nivelesEnsenanza: ["Maestría", "Licenciatura"],
+        
+        publicaciones: { 
+            libros: 2, 
+            revistas: 2, 
+            total: 4 
+        },
+        
+        snii: "Nivel 2", 
+        ssit: "Investigadora Honorífica", 
+        
+        biografia: "Profesora e investigadora con enfoque en Estudios Organizacionales, Administración y Finanzas. Con amplio conocimiento en gestión de programas de posgrado (PNPC Conahcyt) e internacionalización. Ha liderado Cuerpos Académicos Consolidados y grupos de investigación financiados.",
+        
+        datosAdicionales: {
+            titulo: "Logros y Trayectoria Institucional",
+            items: [
+                "Premio Profesionista Lince en categoría de Ciencia e Investigación (2021).",
+                "Coordinadora de programas de posgrado (Doctorado en Turismo - PNPC Conahcyt y Maestría en Administración).",
+                "Responsable institucional de Investigación y Posgrado, Internacionalización y Dirección Académica.",
+                "Ha gestionado proyectos de investigación con financiamiento de CONAHCYT, SEP-PRODEP, Unión Europea, CLACSO, ALFA-Cinda, y UTEsc.",
+                "Líder de Cuerpo Académico Consolidado y líder en Redes Temáticas (PRODEP, CONAHCYT, CLACSO).",
+                "Evaluadora de CONAHCYT, PRODEP, CONFIE, Ferias de Ciencias, DGUTYP, PROFOCIE, y Revistas indexadas.",
+                "Estancias de investigación en universidades de España, Egipto, Polonia, Rusia, Francia, Argentina, Chile, Brasil y Venezuela.",
+                "Enlace en la firma de convenios con universidades internacionales clave (España, Egipto, Polonia, Rusia)."
+            ]
+        },
+        
+        publicacionesRelevantes: [
+            { anio: 2024, titulo: "La gestión del mango. Su cultivo, postcosecha e impacto económico y social", fuente: "Libro (Coordinadora)", tipo: "Libro" },
+            { anio: 2024, titulo: "Mares y tierra. Crónicas de desarrollo y cambio en Sinaloa", fuente: "Libro (Coordinadora)", tipo: "Libro" },
+            { anio: 2023, titulo: "Service Quality and Worker Training in 5-Star Hotel", fuente: "Zeszyty Naukowe Politechniki Częstochowskiej. Zarządzanie", tipo: "Artículo Indexado" },
+            { anio: 2023, titulo: "The entrepreneur woman: challenges and opportunities", fuente: "Research Reviews of Czestochowa University of Technology. Management", tipo: "Artículo Indexado" },
+            { anio: 2023, titulo: "Emprendimiento femenino en Sinaloa", fuente: "Libro: Avances y retos de la participación de la mujer...", tipo: "Capítulo de Libro" },
+        ]
+    },
+
+    // OBJETO 5: M.C. Daniel Alberto Reyes Guerrero
+    {
+        id: 5,
+        nombre: "M.C. Daniel Alberto Reyes Guerrero",
+        profesion: "Ingeniero / Maestro en Ciencias Aplicadas",
+        especialidad: "Energías Renovables y Agroindustria (Mango)",
+        imagen: "img/MC-Daniel-Alberto-Reyes.png",
+        esRector: false,
+        
+        estudios: [
+            "Maestría: Ciencias Aplicadas - Universidad Politécnica de Sinaloa (UPSIN)",
+            "Licenciatura: Ingeniería en Mantenimiento Industrial - Universidad Tecnológica de Escuinapa (UTESC)"
+        ],
+        
+        // CORRECCIÓN: Solo se dejan Licenciatura y Maestría/Ingeniería
+        nivelesEnsenanza: ["Maestría", "Licenciatura", "Ingeniería"],
+        
+        publicaciones: { 
+            libros: 0, 
+            revistas: 5, 
+            total: 5 
+        },
+        
+        snii: "No aplica", 
+        ssit: "Tecnológico", 
+        
+        biografia: "Profesor de tiempo completo en la UTESC. Combina la docencia con proyectos de investigación orientados al aprovechamiento de energías renovables en el sector agroindustrial, con un enfoque particular en el cultivo y procesamiento del mango. Su trabajo se centra en el estudio y aplicación de la energía solar para mejorar la eficiencia y sostenibilidad de los procesos.",
+        
+        datosAdicionales: {
+            titulo: "Líneas de Investigación y Colaboración",
+            items: [
+                "Investigación sobre deshidratadores solares y sistemas térmicos de apoyo para tratamientos hidrotérmicos del mango.",
+                "Integración de tecnologías limpias para el secado de mango en regiones de alta radiación solar (Sur de Sinaloa).",
+                "Diseño y evaluación de sistemas de captación solar adaptados a climas costeros.",
+                "Análisis energético de procesos agroindustriales vinculados al mango.",
+                "Mantenimiento predictivo de equipos agroindustriales alimentados con energía renovable.",
+                "Impulso de colaboraciones entre la universidad y empresas productoras de mango, promoviendo la transferencia tecnológica.",
+                "Dirección de trabajos de estadía orientados a la automatización de procesos y la incorporación de energías alternativas."
+            ]
+        },
+        
+        publicacionesRelevantes: [
+            { anio: 2023, titulo: "El cultivo del mango y su interaccion en la producción, comercialización y el turismo de negocio en Escuinapa, Sinaloa", fuente: "Revista Sinaloense de Ciencia, Tecnología y Humanidades", tipo: "Artículo" },
+            { anio: 2023, titulo: "Mango deshidratado, una alternativa para el desarrollo de negocios para las familias de El Pozole, Rosario, Sinaloa", fuente: "La gestión del mango: Su cultivo, postcosecha e impacto económico y social", tipo: "Capítulo de Libro" },
+            { anio: 2023, titulo: "Infraestructura y comercialización del mango en el sur de Sinaloa: Impacto de los intermediarios", fuente: "La gestión del mango: Su cultivo, postcosecha e impacto económico y social", tipo: "Capítulo de Libro" },
+            { anio: 2019, titulo: "La experimentación y simulación como estrategia de enseñanza para el estudio del recurso solar...", fuente: "Academia Journal 2019 investigación en la educación superior. Tepic 2019", tipo: "Artículo en Congreso" },
+            { anio: 2020, titulo: "Propuesta de elaboración de un piranometro con base de celdas de Cdte.", fuente: "XVII Congreso ibérico y XIII Congreso iberoaméricano de energía solar. CIES 2020", tipo: "Ponencia en Congreso" },
+        ]
     }
 ];
