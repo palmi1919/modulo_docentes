@@ -15,7 +15,7 @@ const docentesData = [
             "Licenciatura: Antropología Social - Escuela Nacional de Antropología e Historia (ENAH)"
         ],
         
-        // CORRECCIÓN: Solo se dejan Maestría y Licenciatura/Etnografía
+        // Se mantiene para su uso futuro, aunque no se mostrará en las tarjetas ni detalle.
         nivelesEnsenanza: ["Maestría", "Licenciatura"], 
         
         publicaciones: {
@@ -54,7 +54,6 @@ const docentesData = [
             "Licenciatura: Economía"
         ],
         
-        // CORRECCIÓN: Solo se deja Maestría
         nivelesEnsenanza: ["Maestría"], 
         
         publicaciones: {
@@ -81,7 +80,7 @@ const docentesData = [
         nombre: "Dr. Omar Jiménez Pérez",
         profesion: "Ingeniero Agrónomo / Profesor Investigador",
         especialidad: "Parasitología Agrícola (Fitopatología)",
-        imagen: "img/Dr-Omar-Jimenez.png", 
+        imagen: "img/Dr-Omar-jimenez.png", 
         
         estudios: [
             "Doctorado: Ciencias en Parasitología Agrícola (Universidad Autónoma Agraria Antonio Narro)",
@@ -89,7 +88,6 @@ const docentesData = [
             "Licenciatura: Ingeniería Agronómica con Acentuación en Protección Vegetal (Universidad Autónoma de Sinaloa)"
         ],
         
-        // CORRECCIÓN: Solo se dejan Licenciatura y Maestría
         nivelesEnsenanza: ["Licenciatura", "Maestría"],
         
         publicaciones: { 
@@ -130,7 +128,6 @@ const docentesData = [
             "Licenciatura: Administración y Finanzas"
         ],
         
-        // CORRECCIÓN: Solo se dejan Licenciatura y Maestría
         nivelesEnsenanza: ["Maestría", "Licenciatura"],
         
         publicaciones: { 
@@ -143,20 +140,6 @@ const docentesData = [
         ssit: "Investigadora Honorífica", 
         
         biografia: "Profesora e investigadora con enfoque en Estudios Organizacionales, Administración y Finanzas. Con amplio conocimiento en gestión de programas de posgrado (PNPC Conahcyt) e internacionalización. Ha liderado Cuerpos Académicos Consolidados y grupos de investigación financiados.",
-        
-        datosAdicionales: {
-            titulo: "Logros y Trayectoria Institucional",
-            items: [
-                "Premio Profesionista Lince en categoría de Ciencia e Investigación (2021).",
-                "Coordinadora de programas de posgrado (Doctorado en Turismo - PNPC Conahcyt y Maestría en Administración).",
-                "Responsable institucional de Investigación y Posgrado, Internacionalización y Dirección Académica.",
-                "Ha gestionado proyectos de investigación con financiamiento de CONAHCYT, SEP-PRODEP, Unión Europea, CLACSO, ALFA-Cinda, y UTEsc.",
-                "Líder de Cuerpo Académico Consolidado y líder en Redes Temáticas (PRODEP, CONAHCYT, CLACSO).",
-                "Evaluadora de CONAHCYT, PRODEP, CONFIE, Ferias de Ciencias, DGUTYP, PROFOCIE, y Revistas indexadas.",
-                "Estancias de investigación en universidades de España, Egipto, Polonia, Rusia, Francia, Argentina, Chile, Brasil y Venezuela.",
-                "Enlace en la firma de convenios con universidades internacionales clave (España, Egipto, Polonia, Rusia)."
-            ]
-        },
         
         publicacionesRelevantes: [
             { anio: 2024, titulo: "La gestión del mango. Su cultivo, postcosecha e impacto económico y social", fuente: "Libro (Coordinadora)", tipo: "Libro" },
@@ -181,8 +164,7 @@ const docentesData = [
             "Licenciatura: Ingeniería en Mantenimiento Industrial - Universidad Tecnológica de Escuinapa (UTESC)"
         ],
         
-        // CORRECCIÓN: Solo se dejan Licenciatura y Maestría/Ingeniería
-        nivelesEnsenanza: ["Maestría", "Licenciatura", "Ingeniería"],
+        nivelesEnsenanza: ["Maestría", "Licenciatura", "Ingeniería", "Mantenimiento"],
         
         publicaciones: { 
             libros: 0, 
@@ -194,19 +176,6 @@ const docentesData = [
         ssit: "Tecnológico", 
         
         biografia: "Profesor de tiempo completo en la UTESC. Combina la docencia con proyectos de investigación orientados al aprovechamiento de energías renovables en el sector agroindustrial, con un enfoque particular en el cultivo y procesamiento del mango. Su trabajo se centra en el estudio y aplicación de la energía solar para mejorar la eficiencia y sostenibilidad de los procesos.",
-        
-        datosAdicionales: {
-            titulo: "Líneas de Investigación y Colaboración",
-            items: [
-                "Investigación sobre deshidratadores solares y sistemas térmicos de apoyo para tratamientos hidrotérmicos del mango.",
-                "Integración de tecnologías limpias para el secado de mango en regiones de alta radiación solar (Sur de Sinaloa).",
-                "Diseño y evaluación de sistemas de captación solar adaptados a climas costeros.",
-                "Análisis energético de procesos agroindustriales vinculados al mango.",
-                "Mantenimiento predictivo de equipos agroindustriales alimentados con energía renovable.",
-                "Impulso de colaboraciones entre la universidad y empresas productoras de mango, promoviendo la transferencia tecnológica.",
-                "Dirección de trabajos de estadía orientados a la automatización de procesos y la incorporación de energías alternativas."
-            ]
-        },
         
         publicacionesRelevantes: [
             { anio: 2023, titulo: "El cultivo del mango y su interaccion en la producción, comercialización y el turismo de negocio en Escuinapa, Sinaloa", fuente: "Revista Sinaloense de Ciencia, Tecnología y Humanidades", tipo: "Artículo" },

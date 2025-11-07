@@ -1,10 +1,8 @@
 // script.js
 
 // Variables globales
+// Se mantiene la data, pero las estadísticas y filtros serán ignorados.
 let docentesFiltrados = [...docentesData]; 
-let filtroActual = {
-    busqueda: '' 
-};
 
 // Elementos del DOM 
 const docentesGrid = document.getElementById('docentes-grid');
@@ -14,17 +12,17 @@ const noResults = document.getElementById('no-results');
 const docenteDetalleSection = document.getElementById('docente-detalle');
 const closeDetailBtn = document.getElementById('close-detail');
 
-// Elementos de estadísticas
-const totalDocentesEl = document.getElementById('total-docentes');
-const conLibrosEl = document.getElementById('con-libros');
-const conRevistasEl = document.getElementById('con-revistas');
-const conDoctoradoEl = document.getElementById('con-doctorado'); 
-const soloMaestriaEl = document.getElementById('solo-maestria'); 
+// Elementos de estadísticas: **(Se mantienen las variables, pero las funciones de actualización se eliminan)**
+// const totalDocentesEl = document.getElementById('total-docentes');
+// const conLibrosEl = document.getElementById('con-libros');
+// const conRevistasEl = document.getElementById('con-revistas');
+// const conDoctoradoEl = document.getElementById('con-doctorado'); 
+// const soloMaestriaEl = document.getElementById('solo-maestria'); 
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
     mostrarDocentes();
-    actualizarEstadisticas();
+    // La llamada a actualizarEstadisticas() se elimina para quitar la funcionalidad.
     
     // Event listeners para la funcionalidad de detalle
     docentesGrid.addEventListener('click', manejarDetalle);
@@ -66,26 +64,7 @@ function mostrarDocentes() {
                     </ul>
                 </div>
                 
-                <div class="docente-niveles">
-                    <h4><i class="fas fa-chalkboard-teacher"></i> Niveles de Enseñanza</h4>
-                    <div class="niveles-tags">
-                        ${docente.nivelesEnsenanza.map(nivel => `<span class="nivel-tag">${nivel}</span>`).join('')}
-                    </div>
                 </div>
-                
-                <div class="docente-publicaciones">
-                    <div class="publicacion-item">
-                        <i class="fas fa-book"></i>
-                        <div class="publicacion-count">${docente.publicaciones.libros}</div>
-                        <div class="publicacion-label">Libros</div>
-                    </div>
-                    <div class="publicacion-item">
-                        <i class="fas fa-newspaper"></i>
-                        <div class="publicacion-count">${docente.publicaciones.revistas}</div>
-                        <div class="publicacion-label">Revistas</div>
-                    </div>
-                </div>
-            </div>
         </a>
     `).join('');
 }
@@ -108,7 +87,7 @@ function manejarDetalle(e) {
     }
 }
 
-// Generar y mostrar el HTML detallado (AÑADIENDO DATOS ADICIONALES)
+// Generar y mostrar el HTML detallado (ELIMINANDO DATOS ADICIONALES, NIVELES Y PUBLICACIONES DE LA SECCIÓN)
 function renderizarDetalle(docente) {
     const detalleContent = document.getElementById('detalle-content');
     
@@ -124,16 +103,9 @@ function renderizarDetalle(docente) {
         </ul>` : '<p>Sin publicaciones relevantes listadas.</p>';
 
     const profesionPrincipalHTML = `<p class="detalle-profesion">${docente.profesion}</p>`;
-
-    // NUEVA SECCIÓN: Datos Adicionales (Trayectoria, Logros, etc.)
-    const datosAdicionalesHTML = docente.datosAdicionales ? 
-        `<section class="detalle-seccion detalle-seccion-full-width">
-            <h3><i class="fas fa-trophy"></i> ${docente.datosAdicionales.titulo}</h3>
-            <ul class="datos-adicionales-list">
-                ${docente.datosAdicionales.items.map(item => `<li>${item}</li>`).join('')}
-            </ul>
-        </section>` : '';
-
+    
+    // NOTA: La sección de Datos Adicionales (y la lógica asociada) se elimina.
+    // NOTA: La sección de Niveles de Enseñanza se elimina.
 
     detalleContent.innerHTML = `
         <div class="detalle-header-wrapper">
@@ -146,17 +118,10 @@ function renderizarDetalle(docente) {
         </div>
 
         <div class="detalle-cuerpo">
-            <div class="detalle-columna">
+            <div class="detalle-columna detalle-columna-unica">
                 <section class="detalle-seccion">
                     <h3><i class="fas fa-user-circle"></i> Semblanza</h3>
                     <p class="docente-biografia">${docente.biografia || 'Información biográfica no disponible.'}</p>
-                </section>
-                
-                <section class="detalle-seccion">
-                    <h3><i class="fas fa-chalkboard-teacher"></i> Áreas de Docencia</h3>
-                    <div class="niveles-tags">
-                        ${docente.nivelesEnsenanza.map(nivel => `<span class="nivel-tag">${nivel}</span>`).join('')}
-                    </div>
                 </section>
             </div>
 
@@ -170,13 +135,18 @@ function renderizarDetalle(docente) {
             </div>
         </div>
         
-        ${datosAdicionalesHTML}
-
         <section class="detalle-seccion detalle-seccion-full-width">
             <h3><i class="fas fa-book-reader"></i> Publicaciones Más Relevantes</h3>
             ${publicacionesRelevantesHTML}
         </section>
     `;
+    
+    // Ajuste de layout si solo queda una columna (biografía) y la otra (formación)
+    const detalleCuerpo = document.querySelector('.detalle-cuerpo');
+    if (docente.biografia) {
+        // Asegura que la biografía ocupe el espacio adecuado sin la sección de niveles
+        document.querySelector('.detalle-columna-unica').style.gridColumn = '1 / 2';
+    }
 }
 
 // Ocultar detalle y volver al listado
@@ -187,53 +157,5 @@ function cerrarDetalle() {
     window.scrollTo(0, 0); 
 }
 
-// Actualizar estadísticas 
-function actualizarEstadisticas() {
-    const total = docentesData.length;
-    const conLibros = docentesData.filter(d => d.publicaciones.libros > 0).length;
-    const conRevistas = docentesData.filter(d => d.publicaciones.revistas > 0).length;
-    
-    // Función auxiliar: Cuenta si el docente TIENE Doctorado/PhD/Posdoc en su FORMACIÓN (estudios)
-    const tieneDoctorado = (d) => d.estudios.some(estudio => 
-        estudio.toLowerCase().includes('phd') || 
-        estudio.toLowerCase().includes('doctorado') ||
-        estudio.toLowerCase().includes('posdoctorado') 
-    );
-    const conDoctorado = docentesData.filter(tieneDoctorado).length;
-
-    // Función auxiliar: Cuenta si el docente TIENE Maestría/Master en su FORMACIÓN (estudios)
-    const tieneMaestria = (d) => d.estudios.some(estudio => 
-        estudio.toLowerCase().includes('maestría') || 
-        estudio.toLowerCase().includes('master') || 
-        estudio.toLowerCase().includes('ciencias aplicadas') 
-    );
-
-    // CÁLCULO DE SOLO MAESTRÍA (tienen Maestría/Master en su formación y NO tienen Doctorado/PhD/Posdoc)
-    const soloMaestria = docentesData.filter(d => 
-        tieneMaestria(d) && !tieneDoctorado(d)
-    ).length;
-    
-    // Animación de contadores
-    animarContador(totalDocentesEl, total);
-    animarContador(conLibrosEl, conLibros);
-    animarContador(conRevistasEl, conRevistas);
-    animarContador(conDoctoradoEl, conDoctorado); 
-    animarContador(soloMaestriaEl, soloMaestria);
-}
-
-// Animar contadores
-function animarContador(elemento, valorFinal) {
-    const valorInicial = parseInt(elemento.textContent) || 0;
-    const duracion = 500;
-    const incremento = (valorFinal - valorInicial) / (duracion / 16);
-    let valorActual = valorInicial;
-    
-    const timer = setInterval(() => {
-        valorActual += incremento;
-        if ((incremento > 0 && valorActual >= valorFinal) || (incremento < 0 && valorActual <= valorFinal)) {
-            valorActual = valorFinal;
-            clearInterval(timer);
-        }
-        elemento.textContent = Math.round(valorActual);
-    }, 16);
-}
+// Las funciones de estadísticas (actualizarContador y animarContador) se eliminan, 
+// ya que la sección de estadísticas ha sido eliminada del HTML.
