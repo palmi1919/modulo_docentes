@@ -80,7 +80,7 @@ const docentesData = [
         nombre: "Dr. Omar Jiménez Pérez",
         profesion: "Ingeniero Agrónomo / Profesor Investigador",
         especialidad: "Parasitología Agrícola (Fitopatología)",
-        imagen: "img/Dr-Omar-jimenez.png", 
+        imagen: "img/Dr-Omar-Jimenez.png", 
         
         estudios: [
             "Doctorado: Ciencias en Parasitología Agrícola (Universidad Autónoma Agraria Antonio Narro)",
