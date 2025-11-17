@@ -65,7 +65,6 @@ body {
 }
 
 .header-logo {
-    /* Logo Grande */
     width: 120px; 
     height: 120px;
     border-radius: 50%;
@@ -77,10 +76,6 @@ body {
     font-size: 2.5rem;
     font-weight: 700;
     margin: 0; 
-}
-
-.header p { 
-    display: none; /* Párrafo movido fuera del header */
 }
 
 .header i {
@@ -95,8 +90,6 @@ body {
     color: var(--text-primary); 
     font-size: 1.3rem; 
     font-weight: 500; 
-    
-    /* Detalle Visual */
     border-top: 1px solid var(--border-color); 
     box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.1); 
 }
@@ -417,15 +410,47 @@ body {
     font-size: 0.95rem;
     margin-bottom: 1rem;
     display: flex;
-    align-items: center;
 }
 
+/* ESTILOS CLAVE PARA LOS ENLACES DE CONTACTO (Mapa, WhatsApp, Correo) */
+.footer-contact ul li a {
+    color: white; 
+    text-decoration: none; 
+    display: flex; 
+    align-items: flex-start;
+    transition: color 0.3s;
+    width: 100%; 
+}
+
+.footer-contact ul li a:hover {
+    color: var(--accent-color); 
+}
+
+/* Estilo base de los íconos de contacto (espaciado) */
 .footer-contact ul li i {
-    color: var(--secondary-color); 
     margin-right: 10px;
+    min-width: 20px; 
+    text-align: center;
+    color: var(--secondary-color); /* Color por defecto si no tiene marca */
 }
 
-/* Enlaces Sociales */
+/* 🗺️ Ícono de Google (Mapa) - Color de Marca */
+.footer-contact ul li .fab.fa-google {
+    color: #DB4437; 
+}
+
+/* 📞 Ícono de WhatsApp (Marca) */
+.footer-contact ul li .fab.fa-whatsapp {
+    color: #25D366; 
+}
+
+/* 📧 Ícono de Correo (Color de Marca) */
+.footer-contact ul li .fas.fa-envelope {
+    color: #4285F4; 
+}
+
+
+/* Enlaces Sociales (Facebook, Instagram) */
 .social-links a {
     color: white;
     font-size: 2rem;
@@ -444,7 +469,7 @@ body {
     }
 }
 
-/* Móviles: Logo encima, Título Centrado, Footer Apilado */
+/* Móviles: Footer Apilado y Centrado */
 @media (max-width: 768px) {
     .detalle-header-wrapper {
         flex-direction: column;
@@ -471,10 +496,6 @@ body {
         align-items: center; 
         width: 100%; 
     }
-    .header-title-wrapper {
-        justify-content: center; 
-        margin-bottom: 0; 
-    }
     .header h1 {
         font-size: 2rem; 
     }
@@ -496,6 +517,9 @@ body {
     }
     .footer-contact ul li {
         justify-content: center; 
+    }
+    .footer-contact ul li a {
+        justify-content: center;
     }
     .social-links {
         text-align: center;
