@@ -429,9 +429,10 @@ body {
 /* Estilo base de los íconos de contacto (espaciado) */
 .footer-contact ul li i {
     margin-right: 10px;
-    min-width: 20px; 
+    min-width: 35px; /* Aumentado: de 20px a 25px para el ancho de la columna del icono */
     text-align: center;
-    color: var(--secondary-color); /* Color por defecto si no tiene marca */
+    color: var(--secondary-color);
+    font-size: 1.5rem; /* AUMENTADO: Nueva propiedad para hacer el icono más grande */
 }
 
 /* 🗺️ Ícono de Google (Mapa) - Color de Marca */
