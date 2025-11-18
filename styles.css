@@ -160,7 +160,7 @@ body {
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
-/* La regla para .docente-especialidad se mantiene aquí en el CSS por si se usa en el futuro, aunque fue eliminada del JS */
+
 .docente-especialidad {
     background: var(--secondary-color);
     color: white;
@@ -476,20 +476,20 @@ body {
     }
 }
 
-/* Móviles: OPTIMIZACIÓN DE ANCHO PARA EL DETALLE */
+/* 🔥 MÓVILES: OPTIMIZACIÓN DE ANCHO (SOLUCIÓN AL PROBLEMA DE CUADROS DELGADOS) 🔥 */
 @media (max-width: 768px) {
     
-    /* 🔥 1. Ajuste clave: Reducir padding del contenedor general para ganar espacio 🔥 */
+    /* 1. Ajuste clave: Reducir el padding del contenedor general para ganar espacio en los lados */
     .container {
         padding: 0 10px; 
     }
 
-    /* 2. Reducir el padding interno de la caja de detalle principal */
+    /* 2. Reducir el padding interno de la caja de detalle principal (#detalle-content) */
     #detalle-content {
         padding: 1.5rem; 
     }
 
-    /* 3. Reducir el padding de las secciones internas (Semblanza, etc.) */
+    /* 3. Reducir el padding de las secciones internas (Semblanza, Formación, etc.) */
     .detalle-seccion {
         padding: 1rem; 
     }
