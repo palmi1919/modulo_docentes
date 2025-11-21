@@ -1,4 +1,3 @@
-/* Reset y Variables */
 * {
     margin: 0;
     padding: 0;
@@ -51,7 +50,7 @@ body {
     margin: 0 auto; 
 }
 
-/* 🔥 Estilo para el enlace que contiene solo el logo 🔥 */
+/* Estilo para el enlace que contiene solo el logo */
 #header-home-link {
     text-decoration: none;
     color: inherit;
@@ -91,7 +90,7 @@ body {
     margin-right: 0.5rem;
 }
 
-/* Sección de Subtítulo (Diseño Elegante) */
+/* Sección de Subtítulo*/
 .header-description-section {
     background-color: var(--card-background); 
     padding: 2rem 0; 
@@ -347,7 +346,7 @@ body {
     text-align: justify; 
 }
 
-/* Publicaciones Relevantes y Datos Adicionales (Full Width) */
+/* Publicaciones Relevantes y Datos Adicionales */
 .detalle-seccion-full-width {
     grid-column: 1 / -1; 
     margin-top: 2rem;
@@ -444,17 +443,17 @@ body {
     font-size: 1.5rem; 
 }
 
-/* 🗺️ Ícono de Google (Mapa) - Color de Marca */
+/* Ícono de Google (Mapa) - Color de Marca */
 .footer-contact ul li .fab.fa-google {
     color: #DB4437; 
 }
 
-/* 📞 Ícono de WhatsApp (Marca) */
+/* Ícono de WhatsApp (Marca) */
 .footer-contact ul li .fab.fa-whatsapp {
     color: #25D366; 
 }
 
-/* 📧 Ícono de Correo (Color de Marca) */
+/* Ícono de Correo (Color de Marca) */
 .footer-contact ul li .fas.fa-envelope {
     color: #4285F4; 
 }
@@ -472,7 +471,7 @@ body {
     color: var(--accent-color); 
 }
 
-/* 🔥 DERECHOS DE AUTOR: Ubicado abajo y centrado 🔥 */
+/* DERECHOS DE AUTOR*/
 .footer-copyright {
     padding-top: 20px; 
     border-top: 1px solid rgba(255, 255, 255, 0.1); 
@@ -499,7 +498,6 @@ body {
     }
 }
 
-/* 🔥 MÓVILES: OPTIMIZACIÓN DE ANCHO (SOLUCIÓN AL PROBLEMA DE CUADROS DELGADOS) 🔥 */
 @media (max-width: 768px) {
     
     /* 1. Ajuste clave: Reducir el padding del contenedor general para ganar espacio en los lados */
