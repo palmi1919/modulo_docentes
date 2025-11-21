@@ -51,6 +51,14 @@ body {
     margin: 0 auto; 
 }
 
+/* 🔥 Estilo para el enlace que contiene solo el logo 🔥 */
+#header-home-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-shrink: 0; 
+}
+
 .header-text-wrapper {
     display: flex;
     flex-direction: column;
@@ -62,15 +70,6 @@ body {
     align-items: center;
     justify-content: center; 
     margin-bottom: 0.5rem; 
-}
-
-/* 🔥 NUEVO: Estilo para el enlace que contiene solo el logo 🔥 */
-/* Asegura que el enlace no tenga estilos de texto y sea un bloque de imagen */
-#header-home-link {
-    text-decoration: none;
-    color: inherit;
-    display: flex; /* Asegura que la imagen esté centrada si fuera necesario */
-    flex-shrink: 0; 
 }
 
 .header-logo {
@@ -471,6 +470,20 @@ body {
 
 .social-links a:hover {
     color: var(--accent-color); 
+}
+
+/* 🔥 DERECHOS DE AUTOR: Ubicado abajo y centrado 🔥 */
+.footer-copyright {
+    padding-top: 20px; 
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    text-align: center; 
+    margin-top: 30px; 
+}
+
+.footer-copyright p {
+    font-size: 0.9rem;
+    opacity: 0.6; 
+    margin: 0;
 }
 
 /* Responsive */
