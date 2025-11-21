@@ -64,12 +64,22 @@ body {
     margin-bottom: 0.5rem; 
 }
 
+/* 🔥 NUEVO: Estilo para el enlace que contiene solo el logo 🔥 */
+/* Asegura que el enlace no tenga estilos de texto y sea un bloque de imagen */
+#header-home-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex; /* Asegura que la imagen esté centrada si fuera necesario */
+    flex-shrink: 0; 
+}
+
 .header-logo {
     width: 120px; 
     height: 120px;
     border-radius: 50%;
     margin-right: 0; 
     flex-shrink: 0; 
+    cursor: pointer; /* Indica visualmente que es clickeable */
 }
 
 .header h1 {

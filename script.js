@@ -7,15 +7,22 @@ const noResults = document.getElementById('no-results');
 const docenteDetalleSection = document.getElementById('docente-detalle');
 const closeDetailBtn = document.getElementById('close-detail'); 
 
+// 🔥 NUEVO ELEMENTO: El enlace del logo/título (ID añadido en el HTML anterior) 🔥
+const headerHomeLink = document.getElementById('header-home-link');
+
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
     mostrarDocentes();
     // Usa delegación de eventos para manejar clics en las tarjetas dentro del grid
     docentesGrid.addEventListener('click', manejarDetalle); 
     closeDetailBtn.addEventListener('click', cerrarDetalle);
-});
 
-// --- FUNCIONES PRINCIPALES ---
+    // 🔥 NUEVA FUNCIONALIDAD: El logo ejecuta cerrarDetalle al hacer clic 🔥
+    headerHomeLink.addEventListener('click', function(e) {
+        e.preventDefault(); // Evita que el enlace # recargue la página
+        cerrarDetalle();
+    });
+});
 
 function mostrarDocentes() {
     docentesFiltrados = docentesData; 
@@ -73,7 +80,6 @@ function manejarDetalle(e) {
     }
 }
 
-// --- FUNCIÓN CLAVE: RENDERIZA EL DETALLE ---
 function renderizarDetalle(docente) {
     const detalleContent = document.getElementById('detalle-content');
     
@@ -83,6 +89,7 @@ function renderizarDetalle(docente) {
             ${docente.publicacionesRelevantes.map(pub => `
                 <li>
                     <strong>[${pub.anio}]</strong> ${pub.titulo} 
+                    <span class="publicacion-fuente"> (${pub.fuente}, ${pub.tipo})</span>
                 </li>
             `).join('')}
         </ul>` : '<p>Sin publicaciones relevantes listadas.</p>';

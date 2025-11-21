@@ -211,24 +211,24 @@ const docentesData = [
     },
 
                 // OBJETO 9: Dr. José Guillermo Galindo Reyes
-    {
-        id: 9,
-        nombre: "Dr. José Guillermo Galindo Reyes",
-        profesion: "Doctorado en Ciencias (IPN)",
-        imagen: "img/Dr-Jose-Guillermo-Galindo-Reyes.jpg", 
+    // {
+    //     id: 9,
+    //     nombre: "Dr. José Guillermo Galindo Reyes",
+    //     profesion: "Doctorado en Ciencias (IPN)",
+    //     imagen: "img/Dr-Jose-Guillermo-Galindo-Reyes.jpg", 
         
-        estudios: [
-            "Licenciatura: Ingeniero Bioquímico (UAS)",
-            "Maestría: Ciencias (UNAM)",
-            "Doctorado: Ciencias (IPN)",
-        ],
+    //     estudios: [
+    //         "Licenciatura: Ingeniero Bioquímico (UAS)",
+    //         "Maestría: Ciencias (UNAM)",
+    //         "Doctorado: Ciencias (IPN)",
+    //     ],
         
-        biografia: "Actual soy profesor investigador universidad tecnológica de Escuinapa 2017-03-14 - presente logros: impartición de cursos de química inorgánica, química orgánica. apoyo a las actividades de investigación en las carreras de agricultura sustentable y bioprocesos, impartición de seminarios asesoría estudiantes. elaboración de nuevas prácticas para estudiantes de las carreras indicadas, desarrollo de proyectos de investigación, vinculados a las actividades agrícolas, acuícolas e industriales de la región (sur de Sinaloa) ver documento trayectoria profesional profesor investigador universidad tecnológica de Escuinapa 2017-03-14 - presente logros: impartición de cursos de química inorgánica, química orgánica. apoyo a las actividades de investigación en las carreras de agricultura sustentable y bioprocesos, impartición de seminarios asesoría estudiantes. elaboración de nuevas prácticas para estudiantes de las carreras indicadas, desarrollo de proyectos de investigación, vinculados a las actividades agrícolas, acuícolas e industriales de la región (sur de Sinaloa) ver documento profesor invitado como (profesor investigador de medio tiempo) universidad autónoma de baja california sur 1985-01-08 - 1985-06-29 logros: impartí dos cursos en la licenciatura de biología marina1.- bioquímica marina2.- microbiología marina profesor investigador de tiempo completo tit. c universidad autónoma de Sinaloa (uas) 1974-10-09 - 2016-02-29 página 3 de 50 manejo de software estadísticos, para cromatografía de gases y de líquidos logros: durante más de 40 años, impartí una centena de cursos en la licenciatura en biología pesquera, así como en la maestría y doctorado en recursos acuáticos de la facultad de ciencias del mar. fundé el laboratorio de contaminación y toxicología marina. dirigí unas 60 tesis en la licenciatura, maestría y doctorado. llevé a cabo más de 20 proyectos de investigación y colaboraciones con instituciones nacionales y extranjeras. trayectoria académica doctor en ciencias instituto politécnico nacional doctorado - grado obtenido ver documento maestro en ciencias.(ecología) instituto politécnico nacional maestría - grado obtenido ver documento maestro en ciencias del mar (oceanografía química) instituto politécnico nacional maestría - grado obtenido ver documento ingeniero bioquímico instituto politécnico nacional licenciatura - grado obtenido ver documento idiomas inglés - avanzado · certificado italiano - avanzado · certificado inglés (united states) - avanzado ·",
+    //     biografia: "Actual soy profesor investigador universidad tecnológica de Escuinapa 2017-03-14 - presente logros: impartición de cursos de química inorgánica, química orgánica. apoyo a las actividades de investigación en las carreras de agricultura sustentable y bioprocesos, impartición de seminarios asesoría estudiantes. elaboración de nuevas prácticas para estudiantes de las carreras indicadas, desarrollo de proyectos de investigación, vinculados a las actividades agrícolas, acuícolas e industriales de la región (sur de Sinaloa) ver documento trayectoria profesional profesor investigador universidad tecnológica de Escuinapa 2017-03-14 - presente logros: impartición de cursos de química inorgánica, química orgánica. apoyo a las actividades de investigación en las carreras de agricultura sustentable y bioprocesos, impartición de seminarios asesoría estudiantes. elaboración de nuevas prácticas para estudiantes de las carreras indicadas, desarrollo de proyectos de investigación, vinculados a las actividades agrícolas, acuícolas e industriales de la región (sur de Sinaloa) ver documento profesor invitado como (profesor investigador de medio tiempo) universidad autónoma de baja california sur 1985-01-08 - 1985-06-29 logros: impartí dos cursos en la licenciatura de biología marina1.- bioquímica marina2.- microbiología marina profesor investigador de tiempo completo tit. c universidad autónoma de Sinaloa (uas) 1974-10-09 - 2016-02-29 página 3 de 50 manejo de software estadísticos, para cromatografía de gases y de líquidos logros: durante más de 40 años, impartí una centena de cursos en la licenciatura en biología pesquera, así como en la maestría y doctorado en recursos acuáticos de la facultad de ciencias del mar. fundé el laboratorio de contaminación y toxicología marina. dirigí unas 60 tesis en la licenciatura, maestría y doctorado. llevé a cabo más de 20 proyectos de investigación y colaboraciones con instituciones nacionales y extranjeras. trayectoria académica doctor en ciencias instituto politécnico nacional doctorado - grado obtenido ver documento maestro en ciencias.(ecología) instituto politécnico nacional maestría - grado obtenido ver documento maestro en ciencias del mar (oceanografía química) instituto politécnico nacional maestría - grado obtenido ver documento ingeniero bioquímico instituto politécnico nacional licenciatura - grado obtenido ver documento idiomas inglés - avanzado · certificado italiano - avanzado · certificado inglés (united states) - avanzado ·",
         
-        publicacionesRelevantes: [
-            { anio: "Info", titulo: "No se listan publicaciones recientes en este perfil.", tipo: "Sin publicaciones destacadas" }
-        ],
+    //     publicacionesRelevantes: [
+    //         { anio: "Info", titulo: "No se listan publicaciones recientes en este perfil.", tipo: "Sin publicaciones destacadas" }
+    //     ],
         
-        esRector: false
-    }
+    //     esRector: false
+    // }
 ];
